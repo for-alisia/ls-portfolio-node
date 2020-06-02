@@ -1,13 +1,11 @@
 const express = require('express');
 
+const frontController = require('../controllers/front-controller');
+
 const router = express.Router();
 
-router.post('/', (req, res) => {
-  res.redirect('/');
-});
+router.post('/', frontController.post);
 
-router.get('/', (req, res) => {
-  res.render('index');
-});
+router.get('/', frontController.get);
 
 module.exports = router;

@@ -1,27 +1,13 @@
 const express = require('express');
 
-const products = require('../models/products');
-const skills = require('../models/skills');
+const adminController = require('../controllers/admin-controller');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.render('admin');
-});
+router.get('/', adminController.get);
 
-router.post('/upload', (req, res) => {
-  const { name, price } = req.body;
-  products.push({ name, price });
-  res.redirect('/admin');
-});
+router.post('/upload', adminController.upload);
 
-router.post('/skills', (req, res) => {
-  const { age, concerts, cities, years } = req.body;
-  skills.age = age;
-  skills.concerts = concerts;
-  skills.cities = cities;
-  skills.years = years;
-  res.redirect('/admin');
-});
+router.post('/skills', adminController.skills);
 
 module.exports = router;

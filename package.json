@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
+    "start": "nodemon --ignore 'db.json' app.js",
     "start-server": "node app.js"
   },
   "author": "Elena Romanova",
@@ -22,6 +22,9 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "pug": "^3.0.0"
+    "formidable": "^1.2.2",
+    "lowdb": "^1.0.0",
+    "pug": "^3.0.0",
+    "uuid": "^8.1.0"
   }
 }
