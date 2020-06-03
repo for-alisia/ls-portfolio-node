@@ -7,7 +7,11 @@ const Product = require('../models/products');
 const Skill = require('../models/skills');
 
 module.exports.get = function (req, res) {
-  res.render('admin', { title: 'Admin Panel', msg: req.query.msg });
+  if (req.session.isAdmin) {
+    res.render('admin', { title: 'Admin Panel', msg: req.query.msg });
+  } else {
+    res.redirect('/login');
+  }
 };
 
 module.exports.upload = async (req, res, next) => {
