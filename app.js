@@ -14,7 +14,7 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views', 'pages'));
 
 // Middlewares
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(

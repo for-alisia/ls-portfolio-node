@@ -1,13 +1,14 @@
 const express = require('express');
 
 const adminController = require('../controllers/admin-controller');
+const isAdminMdl = require('../middlewares/isAdmin');
 
 const router = express.Router();
 
-router.get('/', adminController.get);
+router.get('/', isAdminMdl, adminController.get);
 
-router.post('/upload', adminController.upload);
+router.post('/upload', isAdminMdl, adminController.upload);
 
-router.post('/skills', adminController.skills);
+router.post('/skills', isAdminMdl, adminController.skills);
 
 module.exports = router;

@@ -3,15 +3,13 @@ const path = require('path');
 
 const formidable = require('formidable');
 
+const validation = require('../utils/validation');
+
 const Product = require('../models/products');
 const Skill = require('../models/skills');
 
 module.exports.get = function (req, res) {
-  if (req.session.isAdmin) {
-    res.render('admin', { title: 'Admin Panel', msg: req.query.msg });
-  } else {
-    res.redirect('/login');
-  }
+  res.render('admin', { title: 'Admin Panel', msg: req.query.msg });
 };
 
 module.exports.upload = async (req, res, next) => {
@@ -65,17 +63,4 @@ module.exports.skills = async (req, res) => {
   await skill.save();
 
   res.redirect('/admin?msg=Данные успешно изменены');
-};
-
-const validation = (fields, files) => {
-  if (files.photo.name === '' || files.photo.size === 0) {
-    return { status: 'Не загружено изображение товара', err: true };
-  }
-  if (!fields.name) {
-    return { status: 'Не указано наименование товара', err: true };
-  }
-  if (!fields.price) {
-    return { status: 'Не указана цена товара', err: true };
-  }
-  return { status: 'Ok', err: false };
 };
